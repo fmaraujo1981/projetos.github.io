@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia da Disciplina de Projeto Final</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B',
+                        purple: '#8B5CF6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .nav-link.active {
+            background-color: #3B82F6;
+            color: white;
+        }
+        .checklist-item {
+            transition: all 0.3s ease;
+        }
+        .checklist-item.completed {
+            background-color: #f0f9ff;
+            border-color: #3b82f6;
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-primary">📚 Projeto Final</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="showPage('home')" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-primary transition-colors">Início</button>
+                    <button onclick="showPage('entrega1')" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-primary transition-colors">Entrega 1</button>
+                    <button onclick="showPage('entrega2')" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-primary transition-colors">Entrega 2</button>
+                    <button onclick="showPage('entrega3')" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-primary transition-colors">Entrega 3</button>
+                    <button onclick="showPage('entrega4')" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-primary transition-colors">Entrega 4</button>
+                    <button onclick="showPage('biblioteca')" class="nav-link px-4 py-2 rounded-lg text-gray-700 hover:text-primary transition-colors">Biblioteca</button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <button onclick="showPage('home')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-primary">Início</button>
+                <button onclick="showPage('entrega1')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-primary">Entrega 1</button>
+                <button onclick="showPage('entrega2')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-primary">Entrega 2</button>
+                <button onclick="showPage('entrega3')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-primary">Entrega 3</button>
+                <button onclick="showPage('entrega4')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-primary">Entrega 4</button>
+                <button onclick="showPage('biblioteca')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-primary">Biblioteca</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="gradient-bg min-h-screen flex items-center pt-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    Guia da Disciplina de<br>
+                    <span class="text-yellow-300">Projeto Final</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl mb-8 text-blue-100">
+                    Sistema de Aprendizagem Colaborativa
+                </h2>
+                
+                <div class="max-w-4xl mx-auto text-lg md:text-xl leading-relaxed mb-12 bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                    <p class="mb-6">
+                        Bem-vindos à disciplina de <strong>Projeto Final</strong>! Esta é uma experiência de aprendizagem colaborativa onde cada aluno contribui com diferentes papéis ao longo das entregas, desenvolvendo um sistema web completo.
+                    </p>
+                    <p class="mb-6">
+                        Nossa metodologia combina <strong>trabalho individual</strong> e <strong>colaboração em grupos</strong>, utilizando o <strong>Notion</strong> como diário de bordo para documentar todo o processo de aprendizagem.
+                    </p>
+                    <div class="bg-yellow-400/20 border border-yellow-300 rounded-lg p-6 mt-6">
+                        <h3 class="text-xl font-bold mb-3">🎯 Como Funciona:</h3>
+                        <ul class="text-left space-y-2">
+                            <li>• <strong>Atividades Individuais:</strong> Cada aluno desenvolve competências específicas</li>
+                            <li>• <strong>Grupos Rotativos:</strong> Composição muda a cada entrega</li>
+                            <li>• <strong>Diário de Bordo:</strong> Registro contínuo no Notion</li>
+                            <li>• <strong>Projeto Coletivo:</strong> Todos contribuem para o resultado final</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+                    <button onclick="showPage('entrega1')" class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h3 class="text-xl font-bold mb-2">Entrega 1</h3>
+                        <p class="text-blue-100">Ideação Individual</p>
+                        <p class="text-sm text-blue-200 mt-2">Grupos: Brainstorming</p>
+                    </button>
+                    <button onclick="showPage('entrega2')" class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all">
+                        <div class="text-4xl mb-4">🔧</div>
+                        <h3 class="text-xl font-bold mb-2">Entrega 2</h3>
+                        <p class="text-blue-100">Solução TRIZ</p>
+                        <p class="text-sm text-blue-200 mt-2">Grupos: Análise Técnica</p>
+                    </button>
+                    <button onclick="showPage('entrega3')" class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all">
+                        <div class="text-4xl mb-4">🎨</div>
+                        <h3 class="text-xl font-bold mb-2">Entrega 3</h3>
+                        <p class="text-blue-100">Design UX</p>
+                        <p class="text-sm text-blue-200 mt-2">Grupos: Prototipagem</p>
+                    </button>
+                    <button onclick="showPage('entrega4')" class="card-hover bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all">
+                        <div class="text-4xl mb-4">💻</div>
+                        <h3 class="text-xl font-bold mb-2">Entrega 4</h3>
+                        <p class="text-blue-100">Desenvolvimento</p>
+                        <p class="text-sm text-blue-200 mt-2">Grupos: Implementação</p>
+                    </button>
+                </div>
+
+                <div class="mt-12 bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-4">📧 Comunicação e Entrega</h3>
+                    <p class="mb-4">Mantenham contato constante e enviem o link do Notion para:</p>
+                    <a href="mailto:professor.fabianoaraujo@gmail.com" class="text-yellow-300 text-xl font-semibold underline hover:text-yellow-200">
+                        professor.fabianoaraujo@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Entrega 1 Page -->
+    <div id="entrega1" class="page">
+        <div class="min-h-screen pt-20 pb-12 bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        🎯 Entrega 1: Ideação e Canvas
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Duração: 2 semanas | Foco: Definição do problema e modelagem da solução
+                    </p>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-8 bg-white rounded-lg p-6 shadow-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-700">Progresso da Entrega 1</span>
+                        <span id="progress1-text" class="text-sm text-gray-500">0% Concluído</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress1-bar" class="progress-bar bg-blue-600 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Atividades Individuais -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold text-blue-800 mb-6 flex items-center">
+                            <span class="bg-blue-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">👤</span>
+                            Atividades Individuais
+                        </h2>
+                        
+                        <div class="space-y-4">
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega1')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-blue-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">1. Pesquisa Individual de Mercado</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Identifique 3 problemas reais que poderiam ser resolvidos com tecnologia web. Documente no seu Notion pessoal.</p>
+                                        <div class="mt-2 text-xs text-blue-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega1')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-blue-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">2. Análise de Concorrentes</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Para cada problema identificado, pesquise 2 soluções existentes. Analise pontos fortes e fracos.</p>
+                                        <div class="mt-2 text-xs text-blue-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega1')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-blue-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">3. Estudo do Business Model Canvas</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Assista aos materiais da biblioteca e faça anotações sobre os 9 blocos do Canvas.</p>
+                                        <div class="mt-2 text-xs text-blue-600">⏱️ Tempo estimado: 1.5 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega1')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-blue-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">4. Reflexão Individual</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Escreva uma reflexão de 300 palavras sobre qual problema você considera mais relevante e por quê.</p>
+                                        <div class="mt-2 text-xs text-blue-600">⏱️ Tempo estimado: 1 hora</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atividades em Grupo -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold text-green-800 mb-6 flex items-center">
+                            <span class="bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">👥</span>
+                            Atividades em Grupo
+                        </h2>
+                        
+                        <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-4 mb-6">
+                            <p class="text-sm text-yellow-800">
+                                <strong>Grupos de 4-5 pessoas</strong> - Formação aleatória para esta entrega
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega1')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-green-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">1. Sessão de Brainstorming</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Compartilhem os problemas identificados individualmente. Usem técnicas de brainstorming para gerar novas ideias.</p>
+                                        <div class="mt-2 text-xs text-green-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega1')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-green-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">2. Seleção do Problema</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Utilizem critérios de viabilidade, impacto e interesse para escolher UM problema para desenvolver.</p>
+                                        <div class="mt-2 text-xs text-green-600">⏱️ Tempo estimado: 1 hora</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega1')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-green-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">3. Construção do Canvas</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Preencham colaborativamente o Business Model Canvas para a solução escolhida.</p>
+                                        <div class="mt-2 text-xs text-green-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega1')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-green-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">4. Documentação Colaborativa</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Criem um Notion compartilhado do grupo com todo o processo e decisões tomadas.</p>
+                                        <div class="mt-2 text-xs text-green-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diário de Bordo -->
+                <div class="mt-8 bg-white rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-2xl font-bold text-purple-800 mb-6 flex items-center">
+                        <span class="bg-purple-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">📝</span>
+                        Orientações para o Diário de Bordo (Notion)
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-purple-50 rounded-lg p-6">
+                            <h3 class="font-bold text-purple-800 mb-3">📋 Estrutura Individual</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• <strong>Data e Hora:</strong> Sempre registre quando fez a atividade</li>
+                                <li>• <strong>Atividade Realizada:</strong> Descreva o que foi feito</li>
+                                <li>• <strong>Tempo Gasto:</strong> Quanto tempo dedicou</li>
+                                <li>• <strong>Aprendizados:</strong> O que aprendeu com a atividade</li>
+                                <li>• <strong>Dificuldades:</strong> Quais obstáculos encontrou</li>
+                                <li>• <strong>Próximos Passos:</strong> O que pretende fazer depois</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-6">
+                            <h3 class="font-bold text-green-800 mb-3">👥 Estrutura do Grupo</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>• <strong>Participantes:</strong> Quem esteve presente</li>
+                                <li>• <strong>Objetivo da Reunião:</strong> O que queriam alcançar</li>
+                                <li>• <strong>Decisões Tomadas:</strong> Quais escolhas foram feitas</li>
+                                <li>• <strong>Contribuições:</strong> O que cada um trouxe</li>
+                                <li>• <strong>Conflitos/Consensos:</strong> Pontos de divergência e acordo</li>
+                                <li>• <strong>Ações Definidas:</strong> Quem fará o quê até quando</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <p class="text-sm text-yellow-800">
+                            <strong>💡 Dica:</strong> Use templates no Notion para padronizar seus registros. Crie uma página para cada dia de trabalho e mantenha links organizados entre as atividades individuais e em grupo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Entregáveis -->
+                <div class="mt-8 bg-red-50 rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-2xl font-bold text-red-800 mb-6">📋 Entregáveis da Entrega 1</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-red-700 mb-3">Individual:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>✅ Pesquisa de 3 problemas documentada</li>
+                                <li>✅ Análise de concorrentes</li>
+                                <li>✅ Reflexão pessoal (300 palavras)</li>
+                                <li>✅ Diário de bordo individual no Notion</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-red-700 mb-3">Em Grupo:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>✅ Business Model Canvas completo</li>
+                                <li>✅ Documentação do processo de brainstorming</li>
+                                <li>✅ Justificativa da escolha do problema</li>
+                                <li>✅ Notion compartilhado do grupo</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <p class="text-red-700 font-semibold">
+                            📧 Enviar links do Notion para: 
+                            <a href="mailto:professor.fabianoaraujo@gmail.com" class="underline">professor.fabianoaraujo@gmail.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Entrega 2 Page -->
+    <div id="entrega2" class="page">
+        <div class="min-h-screen pt-20 pb-12 bg-gradient-to-br from-purple-50 to-pink-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        🔧 Entrega 2: Solução e TRIZ
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Duração: 3 semanas | Foco: Desenvolvimento de soluções inovadoras
+                    </p>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-8 bg-white rounded-lg p-6 shadow-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-700">Progresso da Entrega 2</span>
+                        <span id="progress2-text" class="text-sm text-gray-500">0% Concluído</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress2-bar" class="progress-bar bg-purple-600 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Atividades Individuais -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold text-purple-800 mb-6 flex items-center">
+                            <span class="bg-purple-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">👤</span>
+                            Atividades Individuais
+                        </h2>
+                        
+                        <div class="space-y-4">
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega2')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-purple-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">1. Estudo da Metodologia TRIZ</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Estude os materiais da biblioteca sobre TRIZ. Faça resumo dos 40 princípios inventivos.</p>
+                                        <div class="mt-2 text-xs text-purple-600">⏱️ Tempo estimado: 4 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega2')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-purple-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">2. Identificação de Contradições</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Analise o problema do seu grupo e identifique pelo menos 3 contradições técnicas.</p>
+                                        <div class="mt-2 text-xs text-purple-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega2')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-purple-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">3. Aplicação da Matriz TRIZ</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Use a matriz de contradições para encontrar princípios inventivos aplicáveis ao seu problema.</p>
+                                        <div class="mt-2 text-xs text-purple-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega2')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-purple-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">4. Geração de Soluções</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Desenvolva 3 soluções diferentes baseadas nos princípios TRIZ identificados.</p>
+                                        <div class="mt-2 text-xs text-purple-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atividades em Grupo -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold text-pink-800 mb-6 flex items-center">
+                            <span class="bg-pink-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">👥</span>
+                            Atividades em Grupo
+                        </h2>
+                        
+                        <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-4 mb-6">
+                            <p class="text-sm text-yellow-800">
+                                <strong>Novos grupos de 4-5 pessoas</strong> - Formação baseada em complementaridade de habilidades
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega2')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">1. Compartilhamento de Soluções</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Cada membro apresenta suas 3 soluções TRIZ para o grupo.</p>
+                                        <div class="mt-2 text-xs text-pink-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega2')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">2. Análise de Viabilidade</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Avaliem cada solução considerando aspectos técnicos, financeiros e de mercado.</p>
+                                        <div class="mt-2 text-xs text-pink-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega2')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">3. Seleção da Melhor Solução</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Utilizem critérios objetivos para escolher a solução mais promissora.</p>
+                                        <div class="mt-2 text-xs text-pink-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega2')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">4. Refinamento da Solução</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Desenvolvam a solução escolhida em detalhes e atualizem o Canvas.</p>
+                                        <div class="mt-2 text-xs text-pink-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entregáveis -->
+                <div class="mt-8 bg-red-50 rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-2xl font-bold text-red-800 mb-6">📋 Entregáveis da Entrega 2</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-red-700 mb-3">Individual:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>✅ Resumo dos 40 princípios TRIZ</li>
+                                <li>✅ Identificação de contradições</li>
+                                <li>✅ Matriz TRIZ aplicada</li>
+                                <li>✅ 3 soluções desenvolvidas</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-red-700 mb-3">Em Grupo:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>✅ Análise comparativa das soluções</li>
+                                <li>✅ Critérios de seleção documentados</li>
+                                <li>✅ Solução final detalhada</li>
+                                <li>✅ Business Model Canvas atualizado</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Entrega 3 Page -->
+    <div id="entrega3" class="page">
+        <div class="min-h-screen pt-20 pb-12 bg-gradient-to-br from-pink-50 to-rose-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        🎨 Entrega 3: UX e Wireframes
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Duração: 3 semanas | Foco: Design da experiência do usuário
+                    </p>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-8 bg-white rounded-lg p-6 shadow-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-700">Progresso da Entrega 3</span>
+                        <span id="progress3-text" class="text-sm text-gray-500">0% Concluído</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress3-bar" class="progress-bar bg-pink-600 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Atividades Individuais -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold text-pink-800 mb-6 flex items-center">
+                            <span class="bg-pink-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">👤</span>
+                            Atividades Individuais
+                        </h2>
+                        
+                        <div class="space-y-4">
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega3')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">1. Estudo das Regras de Usabilidade</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Estude as 8 Regras de Ouro de Shneiderman. Crie exemplos práticos para cada regra.</p>
+                                        <div class="mt-2 text-xs text-pink-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega3')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">2. Pesquisa com Usuários</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Entreviste 3 pessoas que seriam usuários potenciais da solução. Documente necessidades e expectativas.</p>
+                                        <div class="mt-2 text-xs text-pink-600">⏱️ Tempo estimado: 4 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega3')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">3. Criação de Personas</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Com base nas entrevistas, crie 2 personas detalhadas para representar os usuários-alvo.</p>
+                                        <div class="mt-2 text-xs text-pink-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega3')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">4. Jornada do Usuário</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Mapeie a jornada completa do usuário, desde o primeiro contato até o objetivo final.</p>
+                                        <div class="mt-2 text-xs text-pink-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atividades em Grupo -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold text-rose-800 mb-6 flex items-center">
+                            <span class="bg-rose-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">👥</span>
+                            Atividades em Grupo
+                        </h2>
+                        
+                        <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-4 mb-6">
+                            <p class="text-sm text-yellow-800">
+                                <strong>Grupos especializados</strong> - Formação baseada em interesse por design e UX
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega3')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-rose-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">1. Consolidação das Personas</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Combinem as pesquisas individuais para criar personas consensuais do grupo.</p>
+                                        <div class="mt-2 text-xs text-rose-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega3')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-rose-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">2. Arquitetura da Informação</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Definam a estrutura de navegação e organização do conteúdo do sistema.</p>
+                                        <div class="mt-2 text-xs text-rose-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega3')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-rose-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">3. Wireframes Mobile-First</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Criem wireframes de baixa fidelidade começando pela versão mobile.</p>
+                                        <div class="mt-2 text-xs text-rose-600">⏱️ Tempo estimado: 4 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega3')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-rose-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">4. Teste de Usabilidade</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Testem os wireframes com usuários reais e documentem melhorias necessárias.</p>
+                                        <div class="mt-2 text-xs text-rose-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entregáveis -->
+                <div class="mt-8 bg-red-50 rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-2xl font-bold text-red-800 mb-6">📋 Entregáveis da Entrega 3</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-red-700 mb-3">Individual:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>✅ Resumo das Regras de Usabilidade</li>
+                                <li>✅ 3 entrevistas com usuários</li>
+                                <li>✅ 2 personas criadas</li>
+                                <li>✅ Jornada do usuário mapeada</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-red-700 mb-3">Em Grupo:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>✅ Personas consolidadas</li>
+                                <li>✅ Arquitetura da informação</li>
+                                <li>✅ Wireframes mobile e desktop</li>
+                                <li>✅ Relatório de testes de usabilidade</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Entrega 4 Page -->
+    <div id="entrega4" class="page">
+        <div class="min-h-screen pt-20 pb-12 bg-gradient-to-br from-green-50 to-emerald-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        💻 Entrega 4: Desenvolvimento
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Duração: 4 semanas | Foco: Implementação do sistema completo
+                    </p>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-8 bg-white rounded-lg p-6 shadow-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-700">Progresso da Entrega 4</span>
+                        <span id="progress4-text" class="text-sm text-gray-500">0% Concluído</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress4-bar" class="progress-bar bg-green-600 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Atividades Individuais -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold text-green-800 mb-6 flex items-center">
+                            <span class="bg-green-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">👤</span>
+                            Atividades Individuais
+                        </h2>
+                        
+                        <div class="space-y-4">
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega4')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-green-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">1. Configuração do Ambiente</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Configure XAMPP, crie estrutura de pastas e configure o banco de dados MySQL.</p>
+                                        <div class="mt-2 text-xs text-green-600">⏱️ Tempo estimado: 2 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega4')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-green-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">2. Modelagem do Banco de Dados</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Crie o modelo entidade-relacionamento e implemente as tabelas necessárias.</p>
+                                        <div class="mt-2 text-xs text-green-600">⏱️ Tempo estimado: 4 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega4')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-green-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">3. Desenvolvimento CRUD</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Implemente as operações Create, Read, Update e Delete para uma entidade específica.</p>
+                                        <div class="mt-2 text-xs text-green-600">⏱️ Tempo estimado: 8 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega4')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-green-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">4. Interface Responsiva</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Implemente a interface usando Bootstrap, seguindo os wireframes criados.</p>
+                                        <div class="mt-2 text-xs text-green-600">⏱️ Tempo estimado: 6 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atividades em Grupo -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h2 class="text-2xl font-bold text-emerald-800 mb-6 flex items-center">
+                            <span class="bg-emerald-200 rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3">👥</span>
+                            Atividades em Grupo
+                        </h2>
+                        
+                        <div class="bg-yellow-100 border border-yellow-300 rounded-lg p-4 mb-6">
+                            <p class="text-sm text-yellow-800">
+                                <strong>Grupos de desenvolvimento</strong> - Formação baseada em complementaridade técnica
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega4')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-emerald-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">1. Integração dos Módulos</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Integrem os CRUDs individuais em um sistema coeso e funcional.</p>
+                                        <div class="mt-2 text-xs text-emerald-600">⏱️ Tempo estimado: 4 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega4')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-emerald-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">2. Testes e Validação</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Realizem testes funcionais e validem com as personas criadas na Entrega 3.</p>
+                                        <div class="mt-2 text-xs text-emerald-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega4')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-emerald-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">3. Documentação Técnica</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Criem manual de instalação, documentação do código e guia do usuário.</p>
+                                        <div class="mt-2 text-xs text-emerald-600">⏱️ Tempo estimado: 4 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist-item border-2 border-gray-200 rounded-lg p-4 cursor-pointer" onclick="toggleCheck(this, 'entrega4')">
+                                <div class="flex items-start">
+                                    <input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-emerald-600">
+                                    <div>
+                                        <h3 class="font-semibold text-gray-800">4. Apresentação Final</h3>
+                                        <p class="text-sm text-gray-600 mt-1">Preparem apresentação demonstrando todo o processo e o sistema funcionando.</p>
+                                        <div class="mt-2 text-xs text-emerald-600">⏱️ Tempo estimado: 3 horas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entregáveis -->
+                <div class="mt-8 bg-red-50 rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-2xl font-bold text-red-800 mb-6">📋 Entregáveis da Entrega 4</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-red-700 mb-3">Individual:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>✅ Ambiente configurado e documentado</li>
+                                <li>✅ Modelo de banco de dados</li>
+                                <li>✅ CRUD funcional implementado</li>
+                                <li>✅ Interface responsiva com Bootstrap</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-red-700 mb-3">Em Grupo:</h3>
+                            <ul class="space-y-2 text-sm text-gray-700">
+                                <li>✅ Sistema integrado e funcional</li>
+                                <li>✅ Relatório de testes</li>
+                                <li>✅ Documentação técnica completa</li>
+                                <li>✅ Apresentação final (15 min)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biblioteca Page -->
+    <div id="biblioteca" class="page">
+        <div class="min-h-screen pt-20 pb-12 bg-gradient-to-br from-indigo-50 to-blue-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        📖 Biblioteca de Estudos
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Materiais de apoio e recursos complementares organizados por entrega
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Business Model Canvas -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-4xl mb-4 text-center">🎯</div>
+                        <h3 class="text-xl font-bold text-blue-800 mb-4 text-center">Business Model Canvas</h3>
+                        <p class="text-gray-700 mb-6 text-sm">
+                            Ferramenta visual para desenvolver e documentar modelos de negócio. Essencial para a Entrega 1.
+                        </p>
+                        <div class="space-y-3">
+                            <a href="https://www.strategyzer.com/canvas/business-model-canvas" target="_blank" class="block bg-blue-100 hover:bg-blue-200 rounded-lg p-3 text-sm text-blue-800 transition-colors">
+                                📄 Canvas Original (Strategyzer)
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=wGg_4ThATFI" target="_blank" class="block bg-blue-100 hover:bg-blue-200 rounded-lg p-3 text-sm text-blue-800 transition-colors">
+                                🎥 Tutorial Completo
+                            </a>
+                            <a href="https://canvanizer.com/" target="_blank" class="block bg-blue-100 hover:bg-blue-200 rounded-lg p-3 text-sm text-blue-800 transition-colors">
+                                🛠️ Ferramenta Online
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- TRIZ -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-4xl mb-4 text-center">🔧</div>
+                        <h3 class="text-xl font-bold text-purple-800 mb-4 text-center">TRIZ</h3>
+                        <p class="text-gray-700 mb-6 text-sm">
+                            Metodologia sistemática para resolução inventiva de problemas. Fundamental para a Entrega 2.
+                        </p>
+                        <div class="space-y-3">
+                            <a href="https://www.triz-journal.com/" target="_blank" class="block bg-purple-100 hover:bg-purple-200 rounded-lg p-3 text-sm text-purple-800 transition-colors">
+                                📚 TRIZ Journal
+                            </a>
+                            <a href="https://www.innovation-triz.com/40-inventive-principles" target="_blank" class="block bg-purple-100 hover:bg-purple-200 rounded-lg p-3 text-sm text-purple-800 transition-colors">
+                                📋 40 Princípios Inventivos
+                            </a>
+                            <a href="https://triz-solver.com/" target="_blank" class="block bg-purple-100 hover:bg-purple-200 rounded-lg p-3 text-sm text-purple-800 transition-colors">
+                                🔍 Ferramenta TRIZ Online
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- UX Design -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-4xl mb-4 text-center">🎨</div>
+                        <h3 class="text-xl font-bold text-pink-800 mb-4 text-center">UX e Usabilidade</h3>
+                        <p class="text-gray-700 mb-6 text-sm">
+                            Princípios de design centrado no usuário. Essencial para a Entrega 3.
+                        </p>
+                        <div class="space-y-3">
+                            <a href="https://www.interaction-design.org/literature/article/shneiderman-s-eight-golden-rules-will-help-you-design-better-interfaces" target="_blank" class="block bg-pink-100 hover:bg-pink-200 rounded-lg p-3 text-sm text-pink-800 transition-colors">
+                                📖 8 Regras de Ouro
+                            </a>
+                            <a href="https://www.nngroup.com/articles/ten-usability-heuristics/" target="_blank" class="block bg-pink-100 hover:bg-pink-200 rounded-lg p-3 text-sm text-pink-800 transition-colors">
+                                🔍 Heurísticas de Nielsen
+                            </a>
+                            <a href="https://www.figma.com/" target="_blank" class="block bg-pink-100 hover:bg-pink-200 rounded-lg p-3 text-sm text-pink-800 transition-colors">
+                                🎨 Figma (Ferramenta de Design)
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Wireframes -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-4xl mb-4 text-center">📐</div>
+                        <h3 class="text-xl font-bold text-green-800 mb-4 text-center">Wireframes</h3>
+                        <p class="text-gray-700 mb-6 text-sm">
+                            Ferramentas e técnicas para criação de wireframes mobile-first.
+                        </p>
+                        <div class="space-y-3">
+                            <a href="https://balsamiq.com/learn/articles/what-are-wireframes/" target="_blank" class="block bg-green-100 hover:bg-green-200 rounded-lg p-3 text-sm text-green-800 transition-colors">
+                                📚 Guia Completo de Wireframes
+                            </a>
+                            <a href="https://wireframe.cc/" target="_blank" class="block bg-green-100 hover:bg-green-200 rounded-lg p-3 text-sm text-green-800 transition-colors">
+                                ✏️ Wireframe.cc (Online)
+                            </a>
+                            <a href="https://www.adobe.com/products/xd.html" target="_blank" class="block bg-green-100 hover:bg-green-200 rounded-lg p-3 text-sm text-green-800 transition-colors">
+                                🎯 Adobe XD
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PHP e MySQL -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-4xl mb-4 text-center">💻</div>
+                        <h3 class="text-xl font-bold text-orange-800 mb-4 text-center">PHP e MySQL</h3>
+                        <p class="text-gray-700 mb-6 text-sm">
+                            Desenvolvimento web com PHP e banco de dados MySQL. Para a Entrega 4.
+                        </p>
+                        <div class="space-y-3">
+                            <a href="https://www.php.net/manual/pt_BR/" target="_blank" class="block bg-orange-100 hover:bg-orange-200 rounded-lg p-3 text-sm text-orange-800 transition-colors">
+                                📖 Manual Oficial do PHP
+                            </a>
+                            <a href="https://dev.mysql.com/doc/" target="_blank" class="block bg-orange-100 hover:bg-orange-200 rounded-lg p-3 text-sm text-orange-800 transition-colors">
+                                🗄️ Documentação MySQL
+                            </a>
+                            <a href="https://www.w3schools.com/php/" target="_blank" class="block bg-orange-100 hover:bg-orange-200 rounded-lg p-3 text-sm text-orange-800 transition-colors">
+                                🎓 Tutorial W3Schools
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bootstrap -->
+                    <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+                        <div class="text-4xl mb-4 text-center">🎪</div>
+                        <h3 class="text-xl font-bold text-indigo-800 mb-4 text-center">Bootstrap</h3>
+                        <p class="text-gray-700 mb-6 text-sm">
+                            Framework CSS para desenvolvimento responsivo e mobile-first.
+                        </p>
+                        <div class="space-y-3">
+                            <a href="https://getbootstrap.com/docs/" target="_blank" class="block bg-indigo-100 hover:bg-indigo-200 rounded-lg p-3 text-sm text-indigo-800 transition-colors">
+                                📚 Documentação Oficial
+                            </a>
+                            <a href="https://www.w3schools.com/bootstrap5/" target="_blank" class="block bg-indigo-100 hover:bg-indigo-200 rounded-lg p-3 text-sm text-indigo-800 transition-colors">
+                                🎯 Tutorial Bootstrap 5
+                            </a>
+                            <a href="https://startbootstrap.com/" target="_blank" class="block bg-indigo-100 hover:bg-indigo-200 rounded-lg p-3 text-sm text-indigo-800 transition-colors">
+                                🎨 Templates Gratuitos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notion Templates -->
+                <div class="mt-12 bg-white rounded-2xl p-8 shadow-lg">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">📝 Templates para o Notion</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 rounded-lg p-6">
+                            <h3 class="font-bold text-blue-800 mb-3">📋 Template Individual</h3>
+                            <div class="text-sm text-gray-700 space-y-2">
+                                <p><strong>📅 Data:</strong> [DD/MM/AAAA - HH:MM]</p>
+                                <p><strong>🎯 Atividade:</strong> [Nome da atividade]</p>
+                                <p><strong>⏱️ Tempo:</strong> [Tempo gasto]</p>
+                                <p><strong>📝 Descrição:</strong> [O que foi feito]</p>
+                                <p><strong>💡 Aprendizados:</strong> [O que aprendi]</p>
+                                <p><strong>🚧 Dificuldades:</strong> [Obstáculos encontrados]</p>
+                                <p><strong>➡️ Próximos Passos:</strong> [O que fazer depois]</p>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 rounded-lg p-6">
+                            <h3 class="font-bold text-green-800 mb-3">👥 Template do Grupo</h3>
+                            <div class="text-sm text-gray-700 space-y-2">
+                                <p><strong>📅 Data:</strong> [DD/MM/AAAA - HH:MM]</p>
+                                <p><strong>👥 Participantes:</strong> [Lista dos presentes]</p>
+                                <p><strong>🎯 Objetivo:</strong> [Meta da reunião]</p>
+                                <p><strong>✅ Decisões:</strong> [O que foi decidido]</p>
+                                <p><strong>💬 Contribuições:</strong> [O que cada um trouxe]</p>
+                                <p><strong>⚖️ Conflitos/Consensos:</strong> [Pontos de divergência]</p>
+                                <p><strong>📋 Ações:</strong> [Quem fará o quê até quando]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation and page management
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find and activate the correct nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.textContent.toLowerCase().includes(pageId.replace('entrega', 'entrega ')) || 
+                    (pageId === 'home' && link.textContent.includes('Início')) ||
+                    (pageId === 'biblioteca' && link.textContent.includes('Biblioteca'))) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close mobile menu
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Checklist functionality
+        function toggleCheck(element, entrega) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.checked) {
+                element.classList.add('completed');
+            } else {
+                element.classList.remove('completed');
+            }
+            
+            updateProgress(entrega);
+        }
+
+        // Progress tracking
+        function updateProgress(entrega) {
+            const checkboxes = document.querySelectorAll(`#${entrega} input[type="checkbox"]`);
+            const checkedBoxes = document.querySelectorAll(`#${entrega} input[type="checkbox"]:checked`);
+            const percentage = Math.round((checkedBoxes.length / checkboxes.length) * 100);
+            
+            const progressBar = document.getElementById(`progress${entrega.slice(-1)}-bar`);
+            const progressText = document.getElementById(`progress${entrega.slice(-1)}-text`);
+            
+            if (progressBar && progressText) {
+                progressBar.style.width = percentage + '%';
+                progressText.textContent = percentage + '% Concluído';
+            }
+        }
+
+        // Initialize progress for all pages
+        document.addEventListener('DOMContentLoaded', () => {
+            ['entrega1', 'entrega2', 'entrega3', 'entrega4'].forEach(entrega => {
+                updateProgress(entrega);
+            });
+        });
+
+        // Save progress to localStorage
+        function saveProgress() {
+            const progress = {};
+            ['entrega1', 'entrega2', 'entrega3', 'entrega4'].forEach(entrega => {
+                const checkboxes = document.querySelectorAll(`#${entrega} input[type="checkbox"]`);
+                progress[entrega] = Array.from(checkboxes).map(cb => cb.checked);
+            });
+            localStorage.setItem('projetoFinalProgress', JSON.stringify(progress));
+        }
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('projetoFinalProgress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                Object.keys(progress).forEach(entrega => {
+                    const checkboxes = document.querySelectorAll(`#${entrega} input[type="checkbox"]`);
+                    checkboxes.forEach((cb, index) => {
+                        if (progress[entrega][index]) {
+                            cb.checked = true;
+                            cb.closest('.checklist-item').classList.add('completed');
+                        }
+                    });
+                    updateProgress(entrega);
+                });
+            }
+        }
+
+        // Auto-save progress when checkboxes change
+        document.addEventListener('change', (e) => {
+            if (e.target.type === 'checkbox') {
+                saveProgress();
+            }
+        });
+
+        // Load progress on page load
+        document.addEventListener('DOMContentLoaded', loadProgress);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979f124744aedf39',t:'MTc1NzAwNTUyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
